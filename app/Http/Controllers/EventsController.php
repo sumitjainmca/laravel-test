@@ -97,6 +97,11 @@ class EventsController extends BaseController
      */
 
     public function getEventsWithWorkshops() {
+        $data = DB::table('events')
+                ->join('workshops','events.id','=','workshops.event_id')
+                ->all();
+        print_r($data);
+                
         throw new \Exception('implement in coding task 1');
     }
 
@@ -176,6 +181,17 @@ class EventsController extends BaseController
      */
 
     public function getFutureEventsWithWorkshops() {
+        Db::query("select  *
+         from  events e
+        left join
+                (
+                select  distinct event_id
+                from   workshops
+                where   start > NOW()
+                ) w
+        on      w.event_id = e.id
+        ");
+
         throw new \Exception('implement in coding task 2');
     }
 }

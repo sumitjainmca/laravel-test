@@ -95,6 +95,8 @@ class MenuController extends BaseController
      */
 
     public function getMenuItems() {
+        use App\Models\MenuItem;
+        MenuItem::all();
         throw new \Exception('implement in coding task 3');
     }
 }
